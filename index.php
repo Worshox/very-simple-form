@@ -10,7 +10,21 @@
 </head>
 
 <body>
-
+    <div id="container">
+        <form action="" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+            <label for="email">E-mail</label>
+            <input type="text" name="email" id="email">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <label for="repeat-password">Repeat password</label>
+            <input type="text" name="repeat-password" id="repeat-password">
+            <label for="cv">Your CV link</label>
+            <input type="url" name="cv" id="cv">
+            <input type="submit" name="register" id="register">
+        </form>
+    </div>
 </body>
 
 </html>
