@@ -12,17 +12,27 @@
 <body>
     <div id="container">
         <form action="" method="post">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
-            <label for="email">E-mail</label>
-            <input type="text" name="email" id="email">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <label for="repeat-password">Repeat password</label>
-            <input type="text" name="repeat-password" id="repeat-password">
-            <label for="cv">Your CV link</label>
-            <input type="url" name="cv" id="cv">
-            <input type="submit" name="register" id="register">
+            <div id="username-block" class="input-block">
+                <label for="username">Username</label> <br>
+                <input type="text" name="username" id="username">
+            </div>
+            <div id="email-block" class="input-block">
+                <label for="email">E-mail</label> <br>
+                <input type="text" name="email" id="email">
+            </div>
+            <div id="password-block" class="input-block">
+                <label for="password">Password</label> <br>
+                <input type="password" name="password" id="password">
+            </div>
+            <div id="repeat-password-block" class="input-block">
+                <label for="repeat-password">Repeat password</label> <br>
+                <input type="password" name="repeat-password" id="repeat-password">
+            </div>
+            <div id="cv-block" class="input-block">
+                <label for="cv">Your CV link</label> <br>
+                <input type="url" placeholder="https://www.example.com/my-cv" name="cv" id="cv">
+            </div>
+            <input type="submit" value="Register" name="register" id="register">
         </form>
     </div>
 </body>
