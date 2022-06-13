@@ -18,6 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[$formFieldsNames[$fieldCounter]] = ERROR_REQUIRED_FIELD;
         $fieldCounter++;
     }
+
+    if (!isset($error['email'])) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            $errors['email'] = 'Invalid email address';
+    }
 }
 
 function extractPostData($field)
