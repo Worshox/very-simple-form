@@ -1,5 +1,7 @@
 <?php
-$erros = [];
+
+const ERROR_REQUIRED_FIELD = "This field is required";
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = extractPostData('username');
@@ -8,9 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $repPassword = extractPostData('repeat-password');
     $cv = extractPostData('cv');
 
-    echo "<pre>";
-    echo var_dump($username, $email, $password, $repPassword, $cv);
-    echo "</pre>";
+    $formFieldsNames = array('username', 'email', 'password', 'repPassword', 'cv');
+
+    foreach ($formFieldsNames as $field) {
+        static $fieldCounter = 0;
+        if (!$$field)
+            $errors[$formFieldsNames[$fieldCounter]] = ERROR_REQUIRED_FIELD;
+        $fieldCounter++;
+    }
 }
 
 function extractPostData($field)
@@ -36,23 +43,38 @@ function extractPostData($field)
         <form action="" method="post">
             <div id="username-block" class="input-block">
                 <label for="username">Username</label> <br>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" <?php echo isset($errors['username']) ? 'class="bad-input"' : '' ?>>
+                <div class="empty-field">
+                    <?php echo isset($errors['username']) ? "{$errors['username']} " : '&nbsp;'; ?>
+                </div>
             </div>
             <div id="email-block" class="input-block">
                 <label for="email">E-mail</label> <br>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" <?php echo isset($errors['email']) ? 'class="bad-input"' : '' ?>>
+                <div class="empty-field">
+                    <?php echo isset($errors['email']) ? "{$errors['email']} " : '&nbsp;'; ?>
+                </div>
             </div>
             <div id="password-block" class="input-block">
                 <label for="password">Password</label> <br>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" <?php echo isset($errors['password']) ? 'class="bad-input"' : '' ?>>
+                <div class="empty-field">
+                    <?php echo isset($errors['password']) ? "{$errors['password']} " : '&nbsp;'; ?>
+                </div>
             </div>
             <div id="repeat-password-block" class="input-block">
                 <label for="repeat-password">Repeat password</label> <br>
-                <input type="password" name="repeat-password" id="repeat-password">
+                <input type="password" name="repeat-password" id="repeat-password" <?php echo isset($errors['repPassword']) ? 'class="bad-input"' : '' ?>>
+                <div class="empty-field">
+                    <?php echo isset($errors['repPassword']) ? "{$errors['repPassword']} " : '&nbsp;'; ?>
+                </div>
             </div>
             <div id="cv-block" class="input-block">
                 <label for="cv">Your CV link</label> <br>
-                <input type="text" placeholder="https://www.example.com/my-cv" name="cv" id="cv">
+                <input type="text" placeholder="https://www.example.com/my-cv" name="cv" id="cv" <?php echo isset($errors['cv']) ? 'class="bad-input"' : '' ?>>
+                <div class="empty-field">
+                    <?php echo isset($errors['cv']) ? "{$errors['cv']} " : '&nbsp;'; ?>
+                </div>
             </div>
             <input type="submit" value="Register" name="register" id="register">
         </form>
