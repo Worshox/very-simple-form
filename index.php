@@ -45,35 +45,35 @@ function extractPostData($field)
                 <label for="username">Username</label> <br>
                 <input type="text" name="username" id="username" <?php echo isset($errors['username']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
-                    <?php echo isset($errors['username']) ? "{$errors['username']} " : '&nbsp;'; ?>
+                    <?php echo $errors['username'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="email-block" class="input-block">
                 <label for="email">E-mail</label> <br>
                 <input type="text" name="email" id="email" <?php echo isset($errors['email']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
-                    <?php echo isset($errors['email']) ? "{$errors['email']} " : '&nbsp;'; ?>
+                    <?php echo $errors['email'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="password-block" class="input-block">
                 <label for="password">Password</label> <br>
                 <input type="password" name="password" id="password" <?php echo isset($errors['password']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
-                    <?php echo isset($errors['password']) ? "{$errors['password']} " : '&nbsp;'; ?>
+                    <?php echo $errors['password'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="repeat-password-block" class="input-block">
                 <label for="repeat-password">Repeat password</label> <br>
                 <input type="password" name="repeat-password" id="repeat-password" <?php echo isset($errors['repPassword']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
-                    <?php echo isset($errors['repPassword']) ? "{$errors['repPassword']} " : '&nbsp;'; ?>
+                    <?php echo $errors['repPassword'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="cv-block" class="input-block">
                 <label for="cv">Your CV link</label> <br>
                 <input type="text" placeholder="https://www.example.com/my-cv" name="cv" id="cv" <?php echo isset($errors['cv']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
-                    <?php echo isset($errors['cv']) ? "{$errors['cv']} " : '&nbsp;'; ?>
+                    <?php echo $errors['cv'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <input type="submit" value="Register" name="register" id="register">
