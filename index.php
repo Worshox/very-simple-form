@@ -6,7 +6,7 @@ $errors = [];
 $username = '';
 $email = '';
 $password = '';
-$repRassword = '';
+$repPassword = '';
 $cv = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,7 +57,7 @@ function extractPostData($field)
         <form action="" method="post">
             <div id="username-block" class="input-block">
                 <label for="username">Username</label> <br>
-                <input type="text" value="<?php echo $username ?>" name="username" id="username" <?php echo isset($errors['username']) ? 'class="bad-input"' : '' ?>>
+                <input type="text" value="<?php echo empty($errors) ? '' : $username ?>" name="username" id="username" <?php echo isset($errors['username']) ? 'class="bad-input"' : '' ?>>
                 <div id="username-capacity">Min 6 and max 16 characters</div>
                 <div class="empty-field">
                     <?php echo $errors['username'] ?? '&nbsp;'; ?>
@@ -65,28 +65,28 @@ function extractPostData($field)
             </div>
             <div id="email-block" class="input-block">
                 <label for="email">E-mail</label> <br>
-                <input type="text" value="<?php echo $email ?>" name="email" id="email" <?php echo isset($errors['email']) ? 'class="bad-input"' : '' ?>>
+                <input type="text" value="<?php echo empty($errors) ? '' : $email ?>" name="email" id="email" <?php echo isset($errors['email']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
                     <?php echo $errors['email'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="password-block" class="input-block">
                 <label for="password">Password</label> <br>
-                <input type="password" value="<?php echo $password ?>" name="password" id="password" <?php echo isset($errors['password']) ? 'class="bad-input"' : '' ?>>
+                <input type="password" value="<?php echo empty($errors) ? '' : $password ?>" name="password" id="password" <?php echo isset($errors['password']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
                     <?php echo $errors['password'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="repeat-password-block" class="input-block">
                 <label for="repeat-password">Repeat password</label> <br>
-                <input type="password" value="<?php echo $repPassword ?>" name="repeat-password" id="repeat-password" <?php echo isset($errors['repPassword']) ? 'class="bad-input"' : '' ?>>
+                <input type="password" value="<?php echo empty($errors) ? '' : $repPassword ?>" name="repeat-password" id="repeat-password" <?php echo isset($errors['repPassword']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
                     <?php echo $errors['repPassword'] ?? '&nbsp;'; ?>
                 </div>
             </div>
             <div id="cv-block" class="input-block">
                 <label for="cv">Your CV link</label> <br>
-                <input type="text" value="<?php echo $cv ?>" placeholder="https://www.example.com/my-cv" name="cv" id="cv" <?php echo isset($errors['cv']) ? 'class="bad-input"' : '' ?>>
+                <input type="text" value="<?php echo empty($errors) ? '' : $cv ?>" placeholder="https://www.example.com/my-cv" name="cv" id="cv" <?php echo isset($errors['cv']) ? 'class="bad-input"' : '' ?>>
                 <div class="empty-field">
                     <?php echo $errors['cv'] ?? '&nbsp;'; ?>
                 </div>
