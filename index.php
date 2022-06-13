@@ -19,10 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fieldCounter++;
     }
 
-    if (!isset($error['email'])) {
+    if (!isset($errors['username']))
+        if (strlen($username) < 6 || strlen($username) > 16)
+            $errors['username'] = 'Invalid username length';
+
+    if (!isset($errors['email']))
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             $errors['email'] = 'Invalid email address';
-    }
 }
 
 function extractPostData($field)
@@ -49,6 +52,7 @@ function extractPostData($field)
             <div id="username-block" class="input-block">
                 <label for="username">Username</label> <br>
                 <input type="text" name="username" id="username" <?php echo isset($errors['username']) ? 'class="bad-input"' : '' ?>>
+                <div id="username-capacity">Min 6 and max 16 characters</div>
                 <div class="empty-field">
                     <?php echo $errors['username'] ?? '&nbsp;'; ?>
                 </div>
