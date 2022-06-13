@@ -11,11 +11,12 @@ body {
 
 #container {
     min-width: 40%;
+    max-height: 70%;
 }
 
 form {
     display: grid;
-    grid-template: repeat(7, 1fr) / 2fr 1fr 2fr;
+    grid-template: 1fr 20px 1fr 20px 1fr 20px 0.5fr  / 2fr 1fr 2fr;
 }
 
 #username-block {
@@ -70,4 +71,9 @@ input[type='text'], input[type='password']{
 .bad-input {
     border: 1px solid red;
     box-shadow: 0px 0px 5px 0px #FF3228;
+}
+
+#username-capacity {
+    color: gray;
+    font-size: 0.8em;
 }
