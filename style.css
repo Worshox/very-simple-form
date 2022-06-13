@@ -60,3 +60,14 @@ input[type='text'], input[type='password']{
     height: 2em;
     width: 80%;
 }
+
+.empty-field {
+    color: red;
+    font-size: 0.8em;
+    padding-top: 5px;
+}
+
+.bad-input {
+    border: 1px solid red;
+    box-shadow: 0px 0px 5px 0px #FF3228;
+}
