@@ -32,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($errors['email']))
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             $errors['email'] = 'Invalid email address';
+
+    if (!isset($errors['cv']))
+        if (!filter_var($cv, FILTER_VALIDATE_URL))
+            $errors['cv'] = 'Invalid URL address';
 }
 
 function extractPostData($field)
