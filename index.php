@@ -1,3 +1,25 @@
+<?php
+$erros = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = extractPostData('username');
+    $email = extractPostData('email');
+    $password = extractPostData('password');
+    $repPassword = extractPostData('repeat-password');
+    $cv = extractPostData('cv');
+
+    echo "<pre>";
+    echo var_dump($username, $email, $password, $repPassword, $cv);
+    echo "</pre>";
+}
+
+function extractPostData($field)
+{
+    return htmlspecialchars(stripslashes($_POST[$field]));
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -30,7 +52,7 @@
             </div>
             <div id="cv-block" class="input-block">
                 <label for="cv">Your CV link</label> <br>
-                <input type="url" placeholder="https://www.example.com/my-cv" name="cv" id="cv">
+                <input type="text" placeholder="https://www.example.com/my-cv" name="cv" id="cv">
             </div>
             <input type="submit" value="Register" name="register" id="register">
         </form>
