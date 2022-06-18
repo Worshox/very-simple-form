@@ -1,6 +1,7 @@
 <?php
 
 const ERROR_REQUIRED_FIELD = "This field is required";
+const ERROR_PASSWORDS_DIFF = "Passwords must be the same";
 $errors = [];
 
 $username = '';
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $repPassword = extractPostData('repeat-password');
     $cv = extractPostData('cv');
 
-    $formFieldsNames = array('username', 'email', 'password', 'repPassword', 'cv');
+    $formFieldsNames = array('username', 'email', 'password', 'repPassword');
 
     foreach ($formFieldsNames as $field) {
         static $fieldCounter = 0;
@@ -33,9 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             $errors['email'] = 'Invalid email address';
 
-    if (!isset($errors['cv']))
-        if (!filter_var($cv, FILTER_VALIDATE_URL))
-            $errors['cv'] = 'Invalid URL address';
+    if ($cv && !filter_var($cv, FILTER_VALIDATE_URL))
+        $errors['cv'] = 'Invalid URL address';
+
+    if ($password && $repPassword && strcmp($password, $repPassword) !== 0) {
+        $errors['repPassword'] = ERROR_PASSWORDS_DIFF;
+    }
 }
 
 function extractPostData($field)
@@ -97,6 +101,10 @@ function extractPostData($field)
             </div>
             <input type="submit" value="Register" name="register" id="register">
         </form>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($errors))
+            echo "<div id='success'> Form data sent! </div>";
+        ?>
     </div>
 </body>
 
