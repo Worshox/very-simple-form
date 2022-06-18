@@ -2,7 +2,7 @@
 
 const ERROR_REQUIRED_FIELD = "This field is required";
 const ERROR_PASSWORD_SHORT = "Password must contain at least 6 characters";
-const ERROR_PASSWORD_WEAK = "Password must contain a number and a letter";
+const ERROR_PASSWORD_WEAK = "Password must contain a number a lowercase and an uppercase";
 const ERROR_PASSWORDS_DIFF = "Passwords must be the same";
 $errors = [];
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (strlen($password) < 6)
         $errors['password'] = ERROR_PASSWORD_SHORT;
-    else if ((ctype_alpha($password) || ctype_digit($password)) || preg_match("/[^A-Za-z0-9]+/", $password))
+    else if (!preg_match("/[A-Z]/", $password) || !preg_match("/[a-z]/", $password) || !preg_match("/[0-9]/", $password))
         $errors['password'] = ERROR_PASSWORD_WEAK;
     else if ($password && $repPassword && strcmp($password, $repPassword) !== 0)
         $errors['repPassword'] = ERROR_PASSWORDS_DIFF;
