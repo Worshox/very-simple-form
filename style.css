@@ -77,3 +77,10 @@ input[type='text'], input[type='password']{
     color: gray;
     font-size: 0.8em;
 }
+
+#success {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 1.1em;
+    color: green;
+}
